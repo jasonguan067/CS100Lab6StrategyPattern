@@ -38,4 +38,74 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+class Select_Contains: public Select 
+{
+	
+
+
+
+
+
+
+
+
+
+
+
+};
+
+class Select_Not : public Select 
+{
+
+
+
+
+
+
+
+
+
+
+
+
+};
+
+class Select_And : public Select
+{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};
+
+class Select_or : public Select
+{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};
+
 #endif //__SELECT_HPP__
