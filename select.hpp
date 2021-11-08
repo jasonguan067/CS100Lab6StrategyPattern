@@ -41,7 +41,12 @@ public:
 class Select_Contains: public Select 
 {
 	
+public:
+    Select_Contains(const Spreadsheet* sheet, const std::string& columnName, const std::string& dataName)
+ 	{
 
+
+	} 
 
 
 
