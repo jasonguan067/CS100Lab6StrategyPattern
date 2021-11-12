@@ -40,25 +40,65 @@ public:
 
 class Select_Contains: public Select_Column 
 {
-    protected:
+protected:
     string name;
 
-    public:
+public:
     Select_Contains(const Spreadsheet* sheet, const std::string& columnName, const std::string& dataName) : Select_Column(sheet, columnName){
-	name = dataname;
-}
+	    name = dataname;
+    }
 
     virtual bool select(const std::string& s) const{
-	if(s == ""){ //empty word
-	return true;
-}
+	    if(s == ""){ //empty word
+	        return true;
+        }
 
-	int temp = s.find(name);
-	if(temp != std::string::npos){
-		return true;
-	} else {
-		return false;
-	}	 
+	    int temp = s.find(name);
+	    if(temp != std::string::npos){
+		    return true;
+	    } else {
+		    return false;
+	    }
+    }	 
 
 };
+
+class Select_And : public Select {
+protected:
+    Select* s1;
+    Select* s2;
+
+public:
+    Select_And(Select* a, Select* b) {
+        s1 = a;
+        s2 = b;
+    }
+    ~Select_And() {
+        delete s1;
+        delete s2;
+    }
+    virtual bool select(const Spreadsheet* sheet, int row) const {
+        bool one = false;
+        bool two = false;
+
+        one = s1->select(sheet, row);
+        two = s2->select(sheet, row);
+
+        return (one && two);
+
+};
+
+class Select_Not : public Select {
+protected:
+    Select* a;
+
+public:
+    Select_Not(Select* select) { a = select; }
+    ~Select_Not() { delete a; }
+    virtual bool select(const Spreadsheet* sheet, int row) const {
+        return !(a->select(sheet, row));
+    }
+
+};
+
 #endif //__SELECT_HPP__
