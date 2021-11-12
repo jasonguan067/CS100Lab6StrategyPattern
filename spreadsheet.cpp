@@ -15,8 +15,16 @@ void Spreadsheet::set_selection(Select* new_select)
     select = new_select;
 }
 
-void Spreadsheet::print_selection(std::ostream& out) const {
-    for (int i = 0; i < data.size(); i++) {
+void Spreadsheet::print_selection(std::ostream& out) const
+{
+  Select_Column temp1; 
+  int indexOfName = select->get_column_by_name
+	for(unsigned int i = 0; i < 
+
+
+
+
+ for (int i = 0; i < data.size(); i++) {
         for (int j = 0; j < data[i].size(); j++) {
             out << data[i][j] << " ";
         }
