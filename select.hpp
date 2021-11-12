@@ -38,24 +38,27 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
-class Select_Contains: public Select 
+class Select_Contains: public Select_Column 
 {
-	
-public:
-    Select_Contains(const Spreadsheet* sheet, const std::string& columnName, const std::string& dataName)
- 	{
+    protected:
+    string name;
 
+    public:
+    Select_Contains(const Spreadsheet* sheet, const std::string& columnName, const std::string& dataName) : Select_Column(sheet, columnName){
+	name = dataname;
+}
 
-	} 
+    virtual bool select(const std::string& s) const{
+	if(s == ""){ //empty word
+	return true;
+}
 
-
-
-
-
-
-
-
-
+	int temp = s.find(name);
+	if(temp != std::string::npos){
+		return true;
+	} else {
+		return false;
+	}	 
 
 };
 
